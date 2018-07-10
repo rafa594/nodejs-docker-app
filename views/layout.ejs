@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <meta charset="utf-8">
+  <title>USUARIOS</title>
+  <link rel="stylesheet" href="/style.css" type="text/css" />
+  <script>
+    $.ajax({
+
+      success : function (data) {
+        // data is the object that you send form the server by 
+        // res.jsonp();
+        // here data = {success : true}
+        // validate it
+            if(data['success']){
+                alert("Usuario creado");
+            }
+        }
+    });
+  </script>
+</head>
+<body>
+<%- body %>
+</body>
+</html>
