@@ -7,7 +7,7 @@ var errorHandler = require('errorhandler')
 var path = require('path')
 //const layout = require('express-layout')
 var app = express()
-
+// esto cambio
 app.set('port',8000)
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'jade')
