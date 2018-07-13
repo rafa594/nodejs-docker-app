@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('Build'){
             steps{
-                sh "eval $(aws ecr get-login --no-include-email --region us-east-2 | sed 's|https://||')"
+                sh "eval \$(aws ecr get-login --no-include-email --region us-east-2 | sed 's|https://||')"
                 sh "docker build -t p5imagertut ./nodeapp"
             }            
         }
