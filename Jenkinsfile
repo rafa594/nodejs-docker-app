@@ -15,25 +15,29 @@ node('slave-agent-1'){
                 
     }
     stage('Test'){
-        steps{                
-            echo "test flag stage test value"
-            sh "echo ${env.TESTFLAG}"
-            sh "./test.sh"
-            sh "docker-compose down"
-            echo "test flag stage test value after execute test"
-            sh "echo ${env.TESTFLAG}"
-        }
+                    
+        echo "test flag stage test value"
+        print "TESTFLAG will be : ${env.TESTFLAG}"
+        sh "./test.sh"
+        sh "docker-compose down"
+        echo "test flag stage test value after execute test"
+        print "TESTFLAG will be : ${env.TESTFLAG}"
+        
     }
     stage('Deploy'){
-        when {
-            // Only say hello if a "greeting" is requested
-            expression { env.TESTFLAG == 'PASSED' }
-        }
-        steps{
+        
+        if (env.TESTFLAG == 'PASSED') {
             echo "Test passed - //update stack code here"
             sh "docker tag p5imagertut 797409686075.dkr.ecr.us-east-2.amazonaws.com/p5rtut"
             sh "docker push 797409686075.dkr.ecr.us-east-2.amazonaws.com/p5rtut"
-        } 
+
+        }else {
+            echo "BAD NEWS!!! :S"
+            print "TESTFLAG will be : ${env.TESTFLAG}"
+        }
+        
+            
+        
         
     }
 
