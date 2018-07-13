@@ -1,5 +1,6 @@
 pipeline{
-    def testFlag = 'FAILED'
+    def testFlag
+
     agent{
         label 'slave-agent-1'
     }
