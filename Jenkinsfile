@@ -1,3 +1,4 @@
+env.TESTFLAG = 'FAILED'
 pipeline{
     
 
@@ -16,12 +17,12 @@ pipeline{
         stage('Test'){
             steps{
                 sh "docker-compose up -d"
-                testFlag = sh "./test.sh"                
+                env.TESTFLAG = sh "./test.sh"                
             }
         }
         stage('Deploy'){
             steps{
-                if(testFlag == 'PASSED'){
+                if(env.TESTFLAG == 'PASSED'){
                     echo "Test passed - //update stack code here"
                 } else {
                     echo "Test not passed"
