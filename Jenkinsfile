@@ -11,7 +11,7 @@ pipeline{
             steps{
                 sh "export TESTFLAG='FAILED'"
                 sh "echo 'test flag stage build value'"
-                sh "echo $TESTFLAG"
+                sh "echo \$TESTFLAG"
                 sh "eval \$(aws ecr get-login --no-include-email --region us-east-2 | sed 's|https://||')"
                 sh "docker build -t p5imagertut ./nodeapp"
             }            
@@ -19,17 +19,17 @@ pipeline{
         stage('Test'){
             steps{                
                 echo "test flag stage test value"
-                sh "echo $TESTFLAG"
+                sh "echo \$TESTFLAG"
                 sh "./test.sh"
                 sh "docker-compose down"
                 echo "test flag stage test value after execute test"
-                sh "echo $TESTFLAG"
+                sh "echo \$TESTFLAG"
             }
         }
         stage('Deploy'){
             when {
                 // Only say hello if a "greeting" is requested
-                expression { env.TESTFLAG == 'greeting' }
+                expression { env.TESTFLAG == 'PASSED' }
             }
             steps{
                 echo "Test passed - //update stack code here"
