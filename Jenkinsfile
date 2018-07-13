@@ -1,8 +1,9 @@
 pipeline{
+    def testFlag = 'FAILED'
     agent{
         label 'slave-agent-1'
     }
-    def testFlag = 'FAILED'
+    
     stages{
         stage('Build'){
             steps{
