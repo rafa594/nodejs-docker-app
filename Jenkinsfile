@@ -18,7 +18,7 @@ pipeline{
             steps{
                 sh "docker-compose up -d"
                 script{
-                    variable1 = sh "./test.sh"  
+                    variable1 = sh (script: './test.sh',returnStdout: true)  
                     echo "Resultado : ${variable1}"
                 }
                               
