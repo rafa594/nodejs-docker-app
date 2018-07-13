@@ -28,6 +28,7 @@ node('slave-agent-1'){
     }
     stage('Deploy'){
         def var1 = env.TESTFLAG
+        print "var1 will be : ${var1}"
         if (var1.equals("PASSED")) {
             echo "Test passed - //update stack code here"
             sh "docker tag p5imagertut 797409686075.dkr.ecr.us-east-2.amazonaws.com/p5rtut"
