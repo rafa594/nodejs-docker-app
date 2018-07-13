@@ -28,7 +28,8 @@ pipeline{
         stage('Deploy'){
             steps{
                 script{
-                    if(variable1.equals('PASSED')){
+                    echo "Resultado : ${variable1}"
+                    if(variable1.equals("PASSED")){
                         echo "Test passed - //update stack code here"
                     } else {
                         echo "Test not passed"
