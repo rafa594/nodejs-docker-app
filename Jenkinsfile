@@ -22,6 +22,7 @@ pipeline{
         }
         stage('Deploy'){
             steps{
+                sh "Start Deploying stage"
                 if(TESTFLAG == 'PASSED'){
                     echo "Test passed - //update stack code here"
                 } else {
