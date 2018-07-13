@@ -1,4 +1,5 @@
 docker-compose up -d
+echo $TESTFLAG
 sleep 10
 if curl -s localhost | grep -q '<title>Usuarios</title>'; then
   echo "PASSED"

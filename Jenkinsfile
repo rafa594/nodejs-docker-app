@@ -17,7 +17,7 @@ pipeline{
         stage('Test'){
             steps{                
                 sh "./test.sh"
-                
+                sh "docker-compose down"
             }
         }
         stage('Deploy'){
