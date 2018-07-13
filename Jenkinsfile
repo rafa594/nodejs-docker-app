@@ -1,13 +1,11 @@
+def variable1 = 'FAILED'
 pipeline{
     
 
     agent{
         label 'slave-agent-1'
     }
-    define {
-       def variable1 = 'FAILED'
-       
-     }
+
     stages{
         def testFlag = "FAILED"
         stage('Build'){
