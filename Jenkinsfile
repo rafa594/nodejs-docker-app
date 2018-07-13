@@ -21,14 +21,14 @@ pipeline{
             }
         }
         stage('Deploy'){
+            when {
+                // Only say hello if a "greeting" is requested
+                expression { env.TESTFLAG == 'greeting' }
+            }
             steps{
-                sh "Start Deploying stage"
-                if(${env.TESTFLAG} == 'PASSED'){
-                    echo "Test passed - //update stack code here"
-                } else {
-                    echo "Test not passed"
-                }
+                echo "Test passed - //update stack code here"
             } 
+            
         }
 
     }
