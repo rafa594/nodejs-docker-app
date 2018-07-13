@@ -28,12 +28,12 @@ pipeline{
         stage('Deploy'){
             steps{
                 script{
-                    /*if(env.TESTFLAG == 'PASSED'){
+                    if(variable1 == 'PASSED'){
                         echo "Test passed - //update stack code here"
                     } else {
                         echo "Test not passed"
-                    }*/
-                    echo "jejeje"
+                    }
+                    
                 }
                 
             } 
