@@ -18,7 +18,7 @@ node('slave-agent-1'){
         echo "test flag stage test value"
         print "TESTFLAG will be : ${env.TESTFLAG}"
         sh "docker-compose up -d"
-        env.TESTFLAG = sh "./test.sh"
+        env.TESTFLAG = sh(script: './test.sh', returnStdout: true)
         echo "test flag stage test value after execute test"
         print "TESTFLAG will be : ${env.TESTFLAG}"
         sh "docker-compose down"
