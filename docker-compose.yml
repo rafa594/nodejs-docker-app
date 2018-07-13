@@ -3,7 +3,7 @@ version: '2'
 services:
   redis:
     image: redis:latest
-    container_name: redis_c
+    container_name: redis_cv2
     command: -server -bootstrap
     ports:
       - "6379:6379"
