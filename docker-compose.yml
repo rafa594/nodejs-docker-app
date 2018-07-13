@@ -1,0 +1,56 @@
+version: '2'
+ 
+services:
+  redis:
+    image: redis:latest
+    container_name: redis_c
+    command: -server -bootstrap
+    ports:
+      - "6379:6379"
+    volumes:
+      - /srv/docker/redis:/var/lib/redis
+    command: ["redis-server", "--appendonly", "yes"]
+
+  app1:
+    build:
+      context:  ./nodeapp
+      dockerfile: Dockerfile
+    
+    image: nodeimagep4
+    expose:
+      - "8080"
+    tty: true
+    container_name: node1_c
+    links:
+      - redis:redis
+    environment:
+      R_HOST: redis
+    volumes:
+      - ./nodeapp:/usr/src/app
+  app2:
+    build:
+      context:  ./nodeapp
+      dockerfile: Dockerfile
+    
+    image: nodeimagep4
+    expose:
+      - "8080"
+    tty: true
+    container_name: node2_c
+    links:
+      - redis:redis
+    environment:
+      R_HOST: redis
+    volumes:
+      - ./nodeapp:/usr/src/app
+
+  proxy:
+    build:
+      context:  ./loadbalancer
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    links:
+      - app1
+      - app2
+
