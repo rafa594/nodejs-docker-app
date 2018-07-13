@@ -1,5 +1,7 @@
 docker-compose up -d
+echo "Este es el testflag :"
 echo $TESTFLAG
+echo  "---------------"
 sleep 10
 if curl -s localhost | grep -q '<title>Usuarios</title>'; then
   echo "PASSED"

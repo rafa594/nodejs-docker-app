@@ -10,14 +10,20 @@ pipeline{
         stage('Build'){
             steps{
                 sh "export TESTFLAG='FAILED'"
+                echo "test flag stage build value"
+                sh "echo $TESTFLAG"
                 sh "eval \$(aws ecr get-login --no-include-email --region us-east-2 | sed 's|https://||')"
                 sh "docker build -t p5imagertut ./nodeapp"
             }            
         }
         stage('Test'){
             steps{                
+                echo "test flag stage test value"
+                sh "echo $TESTFLAG"
                 sh "./test.sh"
                 sh "docker-compose down"
+                echo "test flag stage test value after execute test"
+                sh "echo $TESTFLAG"
             }
         }
         stage('Deploy'){
