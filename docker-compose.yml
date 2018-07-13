@@ -43,14 +43,3 @@ services:
       R_HOST: redis
     volumes:
       - ./nodeapp:/usr/src/app
-
-  proxy:
-    build:
-      context:  ./loadbalancer
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
-    links:
-      - app1
-      - app2
-
