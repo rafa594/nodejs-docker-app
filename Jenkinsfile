@@ -17,7 +17,7 @@ pipeline{
         stage('Test'){
             steps{
                 sh "docker-compose up -d"
-                env.TESTFLAG = sh "./test.sh"                
+                env.TESTFLAG = sh (script: "./test.sh",returnStdout: true).trim()     
             }
         }
         stage('Deploy'){
