@@ -8,7 +8,7 @@ pipeline{
     stages{
         
         stage('Build'){
-            env.TESTFLAG = "FAILED"
+            
 
             steps{
                 sh "export TESTFLAG='FAILED'"
