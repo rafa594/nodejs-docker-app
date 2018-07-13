@@ -26,16 +26,16 @@ pipeline{
             }
         }
         stage('Deploy'){
-            when{
+            /*when{
                 expression{ variable1 == "PASSED"}
             }
             steps{
                 echo "Its ok"
-            }
-            /*steps{
+            }*/
+            steps{
                 script{
                     echo "Resultado : ${variable1}"
-                    if(variable1.equals("PASSED")){
+                    if(variable1.contains("PASSED")){
                         echo "Test passed - //update stack code here"
                     } else {
                         echo "Test not passed"
@@ -43,7 +43,7 @@ pipeline{
                     
                 }
                 
-            }*/ 
+            } 
         }
 
     }
