@@ -17,12 +17,12 @@ pipeline{
         stage('Test'){
             steps{
                 sh "docker-compose up -d"
-                env.TESTFLAG = sh (script: "./test.sh",returnStdout: true).trim()     
+                TESTFLAG = sh (script: "./test.sh",returnStdout: true).trim()     
             }
         }
         stage('Deploy'){
             steps{
-                if(env.TESTFLAG == 'PASSED'){
+                if(TESTFLAG == 'PASSED'){
                     echo "Test passed - //update stack code here"
                 } else {
                     echo "Test not passed"
