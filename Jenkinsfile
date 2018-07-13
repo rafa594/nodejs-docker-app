@@ -37,6 +37,8 @@ pipeline{
                     echo "Resultado : ${variable1}"
                     if(variable1.contains("PASSED")){
                         echo "Test passed - //update stack code here"
+                        sh "docker tag p5imagertut 797409686075.dkr.ecr.us-east-2.amazonaws.com/p5rtut"
+                        sh "docker push 797409686075.dkr.ecr.us-east-2.amazonaws.com/p5rtut"
                     } else {
                         echo "Test not passed"
                     }
