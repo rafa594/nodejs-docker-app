@@ -12,15 +12,12 @@ services:
     command: ["redis-server", "--appendonly", "yes"]
 
   app1:
-    build:
-      context:  ./nodeapp
-      dockerfile: Dockerfile
     
-    image: nodeimagep4
+    image: p5imagertut:latest
     expose:
       - "8000"
     tty: true
-    container_name: node1_c
+    container_name: node1_cv2
     links:
       - redis:redis
     environment:
@@ -28,18 +25,25 @@ services:
     volumes:
       - ./nodeapp:/usr/src/app
   app2:
-    build:
-      context:  ./nodeapp
-      dockerfile: Dockerfile
     
-    image: nodeimagep4
+    image: p5imagertut:latest
     expose:
       - "8000"
     tty: true
-    container_name: node2_c
+    container_name: node2_cv2
     links:
       - redis:redis
     environment:
       REDIS_URL: redis
     volumes:
       - ./nodeapp:/usr/src/app
+  
+  proxy:
+    build:
+      context:  ./loadbalancer
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    links:
+      - app1
+      - app2
