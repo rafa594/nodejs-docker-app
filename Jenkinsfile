@@ -23,7 +23,7 @@ pipeline{
         stage('Deploy'){
             steps{
                 sh "Start Deploying stage"
-                if($TESTFLAG == 'PASSED'){
+                if(${env.TESTFLAG} == 'PASSED'){
                     echo "Test passed - //update stack code here"
                 } else {
                     echo "Test not passed"
