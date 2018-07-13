@@ -17,7 +17,11 @@ pipeline{
         stage('Test'){
             steps{
                 sh "docker-compose up -d"
-                sh "./test.sh"                
+                script{
+                    variable1 = sh "./test.sh"  
+                    echo "Resultado : ${variable1}"
+                }
+                              
                 sh "docker-compose down"
             }
         }
