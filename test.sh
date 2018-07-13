@@ -1,4 +1,4 @@
-sleep 10
+sleep 9
 if curl -s localhost | grep -q '<title>Usuarios</title>'; then
   echo "PASSED"
   exit 0
