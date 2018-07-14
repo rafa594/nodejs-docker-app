@@ -39,6 +39,7 @@ pipeline{
                         echo "Test passed - //update stack code here"
                         sh "docker tag p5imagertut 797409686075.dkr.ecr.us-east-2.amazonaws.com/p5rtut"
                         sh "docker push 797409686075.dkr.ecr.us-east-2.amazonaws.com/p5rtut"
+                        sh "aws ecs update-service --service p5rtut-stack-Service --force-new-deployment"
                     } else {
                         echo "Test not passed"
                     }
